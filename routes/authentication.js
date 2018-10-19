@@ -131,13 +131,22 @@ module.exports = (router) => {
             res.json({ success: false, message: err }); // Return error
           } else {
             // Check if username was found
+       
             if (!user) {
+            
               res.json({ success: false, message: 'Username not found.' }); // Return error
             } else {
-              const validPassword = true; // Compare password provided to password in database
+        
+              const validPassword = user.comparePassword(req.body.password); // Compare password provided to password in database
               // Check if password is a match
               if (!validPassword) {
+                // console.log(user.comparePassword(req.body.password));
+                // console.log(req.body.password);
+                // console.log(user.password);
+            
+              
                 res.json({ success: false, message: 'Password invalid' }); // Return error
+
               } else {
                 const token = jwt.sign({ userId: user._id }, config.secret, { expiresIn: '24h' }); // Create a token for client
                 res.json({

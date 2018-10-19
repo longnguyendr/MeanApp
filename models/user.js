@@ -139,6 +139,10 @@ userSchema.pre('save', function(next) {
 });
 
 // Methods to compare password to encrypted password upon login
+// bcrypt.compare(password, hash).then(function(res) {
+//   // res == true 
+//   return true;
+// });
 userSchema.methods.comparePassword = function(password) {
   return bcrypt.compareSync(password, this.password); // Return comparison of login password to password in database (true or false)
 };
