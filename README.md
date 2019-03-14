@@ -24,3 +24,10 @@ $ npm install
 $ cd client/
 $ npm install
 ```
+
+- Finally, run the app:
+```
+$ cd ..
+$ npm run build
+$ npm run start
+```
